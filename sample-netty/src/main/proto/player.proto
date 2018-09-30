@@ -1,0 +1,16 @@
+syntax = "proto2";
+option java_package = "kim.castle.sample.netty.model";
+option java_outer_classname = "PlayerBuf";
+
+message Player {
+    required int64 playerId = 1;
+    required int32 age = 2;
+    required string name = 3;
+    
+    repeated int32 skills = 4;
+}
+
+message Resource {
+    required int64 gold = 1;
+    required int32 energy = 2;
+}
