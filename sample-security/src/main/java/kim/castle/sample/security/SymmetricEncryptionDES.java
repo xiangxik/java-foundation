@@ -10,15 +10,18 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.util.encoders.Hex;
 
-public class SymmetricEncryption {
+public class SymmetricEncryptionDES {
 	public static void main(String[] args) {
 
 		// 采用BC方式，如注释此行，则采用JDK方式
 		Security.addProvider(new BouncyCastleProvider());
 
 		Key convertedSecretKey = initConvertedSecretKey();
-		System.out.println(decryptDES(encryptDES("sssbbb", convertedSecretKey), convertedSecretKey));
+		byte[] encrypted = encryptDES("who's your daddy?", convertedSecretKey);
+		System.out.println(new String(Hex.encode(encrypted)));
+		System.out.println(decryptDES(encrypted, convertedSecretKey));
 	}
 
 	private static Key initConvertedSecretKey() {
